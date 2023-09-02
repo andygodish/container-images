@@ -22,7 +22,7 @@ function build_and_push_docker_image() {
     # Check if it's a *.dockerfile - if so, use the filename prefix as the tag
     if [[ $dockerfile_path == *".dockerfile" ]]; then
         image_tag="${dockerfile_base%.dockerfile}"
-        image_name=${dockerfile_dir//$root_dir}
+        image_name=${dockerfile_dir//$root_dir/base}
     fi
 
     # Check if dockerfile is named 'dockerfile', if so, add the tag in the FROM statement to the image name
@@ -41,7 +41,7 @@ function build_and_push_docker_image() {
         IFS='/'
         rejoined="${path_parts[*]}"
         unset IFS
-        image_name=${rejoined//$root_dir}
+        image_name=${rejoined//$root_dir/base}
 
         year_date_tag=$(date +%Y-%m)
     fi
