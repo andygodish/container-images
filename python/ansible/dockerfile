@@ -21,3 +21,5 @@ RUN pip install --user ansible
 
 ENV PATH="/home/appuser/.local/bin:${PATH}"
 
+RUN mkdir -p /home/appuser/.ssh && \
+    mkdir -p /home/appuser/.ansible/roles /home/appuser/.ansible/tmp && \
