@@ -25,18 +25,16 @@ docker run -it \
 
 ### Prod
 
-Buiild sans `--target dev`.
+Build sans `--target dev`.
+
+From the root of this repo:
+```
+docker build -t ping:prod -f ./python/ansible/docker/dockerfile .docker build -t ping:prod .
+```
+
+Now you only need to supply the ssh key for your hosts since the build target (dockerfile) copies the content of the ansible project in the container image:
 
 ```
-cd python/ansible/ping
-```
-```
-docker build -t ping:dev .
-```
-```
-docker run -it \
--v ${PWD}:/home/appuser/app \
--v ${PWD}/roles:/home/appuser/.ansible/roles \
--v /tmp/.test-ssh:/home/appuser/.ssh \
+docker run -it -v /tmp/.test-ssh:/home/appuser/.ssh \              
 --rm ping:prod
 ```

@@ -19,7 +19,7 @@ WORKDIR /home/appuser/app
 
 FROM dev AS prod
 
-COPY . .
+COPY ./python/ansible/docker .
 
 CMD ["ansible-playbook", "main.yaml"]
 
