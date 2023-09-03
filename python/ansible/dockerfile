@@ -1,5 +1,7 @@
 FROM docker.io/andygodish/base-python:3.11-slim-bookworm
 
+USER root
+
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -11,6 +13,8 @@ RUN apt-get update -y && \
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
+
+USER appuser
 
 RUN pip install pip --upgrade
 RUN pip install ansible
