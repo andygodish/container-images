@@ -17,6 +17,7 @@ ENV DEBIAN_FRONTEND=dialog
 USER appuser
 
 RUN pip install pip --upgrade
+# --user configures for the current user instead of root
 RUN pip install --user ansible
 
 ENV PATH="/home/appuser/.local/bin:${PATH}"
