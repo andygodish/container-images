@@ -17,4 +17,4 @@ ENV DEBIAN_FRONTEND=dialog
 USER appuser
 
 RUN pip install pip --upgrade
-RUN pip install ansible --user appuser
+RUN pip install --user ansible
