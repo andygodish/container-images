@@ -23,6 +23,9 @@ function build_and_push_docker_image() {
     if [[ $dockerfile_path == *".dockerfile" ]]; then
         image_tag="${dockerfile_base%.dockerfile}"
         image_name=${dockerfile_dir//$root_dir/base}
+
+        # for pushing to dockerhub, can't have a nested directory structure
+        image_name=$(echo "$image_name" | sed 's/\//-/g')
     fi
 
     # Check if dockerfile is named 'dockerfile', if so, add the tag in the FROM statement to the image name
@@ -42,6 +45,9 @@ function build_and_push_docker_image() {
         rejoined="${path_parts[*]}"
         unset IFS
         image_name=${rejoined//$root_dir/base}
+
+        # for pushing to dockerhub, can't have a nested directory structure
+        image_name=$(echo "$image_name" | sed 's/\//-/g')
 
         year_date_tag=$(date +%Y-%m)
     fi
