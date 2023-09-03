@@ -1,0 +1,37 @@
+---
+- name: List installed Vagrant plugins
+  shell: su - {{ vagrant_plugins_user }} -c 'vagrant plugin list'
+  become: true
+  changed_when: false
+  register: vagrant_initial_plugins_list
+  when: vagrant_plugins_user != ''
+
+- name: Install Vagrant plugins
+  shell: su - {{ vagrant_plugins_user }} -c 'vagrant plugin install {{ item }}'
+  become: true
+  with_items: "{{ vagrant_plugins }}"
+  when:
+    - vagrant_plugins_user != ''
+    - vagrant_plugins_state == 'present'
+    - item not in vagrant_initial_plugins_list.stdout
+  ignore_errors: true
+
+- name: Install Vagrant plugins with specific version.
+  shell: su - {{ vagrant_plugins_user }} -c 'vagrant plugin install {{ item.name }} --plugin-version {{ item.version}}'
+  become: true
+  with_items: "{{ vagrant_plugins_with_version }}"
+  when:
+    - vagrant_plugins_user != ''
+    - vagrant_plugins_state == 'present'
+    - item.name not in vagrant_initial_plugins_list.stdout
+  ignore_errors: true
+
+- name: Uninstall Vagrant plugins
+  shell: su - {{ vagrant_plugins_user }} -c 'vagrant plugin uninstall {{ item }}'
+  become: true
+  with_items: "{{ vagrant_plugins }}"
+  when:
+    - vagrant_plugins_user != ''
+    - vagrant_plugins_state == 'absent'
+    - item in vagrant_initial_plugins_list.stdout
+  ignore_errors: true

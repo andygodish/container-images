@@ -1,0 +1,6 @@
+---
+- name: Ensuring vagrant is installed.
+  community.general.pacman:
+    name: "{{ vagrant_package_name }}"
+    state: "{{ vagrant_package_state }}"
+    update_cache: true

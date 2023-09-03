@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  become: yes
+
+  roles:
+    - terraform
+    - vagrant
+    - packer

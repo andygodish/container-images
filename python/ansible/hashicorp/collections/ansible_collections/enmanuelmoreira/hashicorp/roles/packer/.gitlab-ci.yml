@@ -1,0 +1,9 @@
+---
+include:
+  - local: .gitlab/workflows/ci.yml
+  - local: .gitlab/workflows/triage.yml
+
+stages:
+  - lint
+  - test
+  - triage

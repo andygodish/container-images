@@ -1,0 +1,29 @@
+---
+# Setup/install tasks.
+- include_tasks: setup-Archlinux.yml
+  when: ansible_os_family == 'Archlinux'
+
+- name: Include OS-Distro specific variables on RedHat.
+  include_vars: "RedHat.yml"
+
+- include_tasks: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat' and ansible_distribution != 'Fedora'
+
+- name: Include OS-Distro specific variables on Debian.
+  include_vars: "Debian.yml"
+
+- include_tasks: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+# Fedora Tasks
+- name: Include OS-Distro specific variables on Fedora.
+  include_vars: Fedora.yml
+  when: ansible_distribution == 'Fedora'
+
+- include_tasks: setup-Fedora.yml
+  when: ansible_distribution == 'Fedora'
+
+- include_tasks: configure.yml
+
+# Install configured plugins.
+- include_tasks: plugins.yml

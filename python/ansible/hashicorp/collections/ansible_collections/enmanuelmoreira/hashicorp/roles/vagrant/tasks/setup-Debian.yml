@@ -1,0 +1,31 @@
+---
+- name: Get Release
+  shell:
+    cmd: |
+      lsb_release -cs
+  register: lsb_release
+  changed_when: false
+
+- name: Ensure dependencies are installed.
+  ansible.builtin.apt:
+    name:
+      - gpg-agent
+    state: present
+    update_cache: yes
+
+- name: Add the Hashicorp GPG Key
+  ansible.builtin.apt_key:
+    url: "{{ hashicorp_gpg_path }}"
+    keyring: "{{ hashicorp_gpg_key }}"
+
+- name: Add Hashicorp Repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64 signed-by={{ hashicorp_gpg_key }}] {{ hashicorp_repo_path }}
+    filename: hashicorp
+    state: present
+
+- name: Ensure Vagrant is installed.
+  ansible.builtin.apt:
+    name: "{{ vagrant_package_name }}"
+    state: "{{ vagrant_package_state }}"
+    update_cache: yes

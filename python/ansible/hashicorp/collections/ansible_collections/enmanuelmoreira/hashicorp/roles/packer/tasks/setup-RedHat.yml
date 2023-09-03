@@ -1,0 +1,17 @@
+---
+- name: Ensure dependencies are installed.
+  ansible.builtin.package:
+    name:
+      - dnf-plugins-core
+    state: present
+
+- name: Ensure HAshicorp repo is installed.
+  ansible.builtin.get_url:
+    url: "{{ hashicorp_repo_path }}"
+    dest: /etc/yum.repos.d/hashicorp.repo
+  when: hashicorp_repo_path | default(false)
+
+- name: Ensure Packer is installed.
+  ansible.builtin.package:
+    name: "{{ packer_package_name }}"
+    state: "{{ packer_package_state }}"

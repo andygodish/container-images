@@ -1,0 +1,8 @@
+download_url: https://galaxy.ansible.com/download/enmanuelmoreira-hashicorp-1.4.1.tar.gz
+format_version: 1.0.0
+name: hashicorp
+namespace: enmanuelmoreira
+server: https://galaxy.ansible.com/api/
+signatures: []
+version: 1.4.1
+version_url: https://galaxy.ansible.com/api/v2/collections/enmanuelmoreira/hashicorp/versions/1.4.1/

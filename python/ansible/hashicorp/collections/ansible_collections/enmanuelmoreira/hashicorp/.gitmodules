@@ -1,0 +1,9 @@
+[submodule "roles/terraform"]
+	path = roles/terraform
+	url = https://gitlab.com/enmanuelmoreira/ansible-role-terraform
+[submodule "roles/packer"]
+	path = roles/packer
+	url = https://gitlab.com/enmanuelmoreira/ansible-role-packer
+[submodule "roles/vagrant"]
+	path = roles/vagrant
+	url = https://gitlab.com/enmanuelmoreira/ansible-role-vagrant

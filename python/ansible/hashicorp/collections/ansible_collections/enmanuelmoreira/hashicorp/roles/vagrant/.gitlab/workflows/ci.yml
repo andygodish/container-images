@@ -1,0 +1,57 @@
+---
+image: enmanuelmoreira/dind-ansible-molecule:latest
+
+variables:
+  # When using dind, it's wise to use the overlayfs driver for improved performance.
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+services:
+  - docker:20.10-dind
+
+.rules:
+  job_rules: &job_rules
+    rules:
+      - if: $CI_PIPELINE_SOURCE == "push"
+      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+Lint Analysis:
+  stage: lint
+  script:
+    - yamllint .
+  <<: *job_rules
+
+test_fedora35:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: "enmanuelmoreira/docker-ansible-fedora35"
+  before_script:
+    - pip install molecule
+  script:
+    - molecule test
+  <<: *job_rules
+
+test_rocky8:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: "enmanuelmoreira/docker-ansible-rocky8"
+  before_script:
+    - pip install molecule
+  script:
+    - molecule test
+  <<: *job_rules
+
+test_ubuntu2004:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: "enmanuelmoreira/docker-ansible-ubuntu2004"
+  before_script:
+    - pip install molecule
+  script:
+    - molecule test
+  <<: *job_rules
+
+schedule:
+  stage: triage
+  extends:
+    - .schedule:triage

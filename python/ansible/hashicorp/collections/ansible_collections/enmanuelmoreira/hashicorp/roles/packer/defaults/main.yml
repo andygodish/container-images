@@ -1,0 +1,9 @@
+---
+packer_package_name: packer
+packer_package_state: present
+
+# Packer depends on two environment variables being configured for activate logs.
+# These two variables are PACKER_LOG and PACKER_LOG_PATH, both need
+# to be configured our no logging will occur.
+packer_activate_log: "1"
+packer_log_path: "/var/log/packer.log"

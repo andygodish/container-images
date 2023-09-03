@@ -1,0 +1,6 @@
+---
+- name: Ensuring terraform is installed.
+  community.general.pacman:
+    name: "{{ terraform_package_name }}"
+    state: "{{ terraform_package_state }}"
+    update_cache: true

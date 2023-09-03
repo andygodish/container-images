@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: 'true'
+
+  vars:
+    vagrant_plugins_user: vagrant
+
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"

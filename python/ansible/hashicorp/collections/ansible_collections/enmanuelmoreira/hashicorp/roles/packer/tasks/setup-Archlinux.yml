@@ -1,0 +1,6 @@
+---
+- name: Ensuring packer is installed.
+  community.general.pacman:
+    name: "{{ packer_package_name }}"
+    state: "{{ packer_package_state }}"
+    update_cache: true

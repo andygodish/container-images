@@ -1,0 +1,4 @@
+---
+hashicorp_repo_path: https://apt.releases.hashicorp.com {{ lsb_release.stdout }} main
+hashicorp_gpg_path: https://apt.releases.hashicorp.com/gpg
+hashicorp_gpg_key: /etc/apt/trusted.gpg.d/hashicorp.gpg

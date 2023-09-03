@@ -1,0 +1,36 @@
+{
+ "collection_info": {
+  "namespace": "enmanuelmoreira",
+  "name": "hashicorp",
+  "version": "1.4.1",
+  "authors": [
+   "enmanuelmoreira"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "terraform",
+   "packer",
+   "vagrant"
+  ],
+  "description": "Collection of Hashicorp tools.",
+  "license": [
+   "MIT"
+  ],
+  "license_file": null,
+  "dependencies": {
+   "community.general": ">=3.0.0"
+  },
+  "repository": "https://gitlab.com/enmanuelmoreira/ansible-collection-hashicorp",
+  "documentation": "https://gitlab.com/enmanuelmoreira/ansible-collection-hashicorp",
+  "homepage": "https://www.enmanuelmoreira.com",
+  "issues": "https://gitlab.com/enmanuelmoreira/ansible-collection-hashicorp/-/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "d9675ec3026a951f8115fe0ccaf6b3a7f512cf3dadbeaa374a3278e86829eeec",
+  "format": 1
+ },
+ "format": 1
+}

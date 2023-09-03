@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: archlinux
+    box: archlinux/archlinux
+    memory: 8192
+    cpus: 2
+    interfaces:
+      # `network_name` is the required identifier, other keys map to arguments.
+      - auto_config: true
+        network_name: private_network
+        type: static
+        ip: 192.168.57.20
+        guest: 80
+        host: 8080
+    # List of raw Vagrant `config` options.
+    provider_raw_config_args:
+      - "customize [ 'modifyvm', :id, '--nested-hw-virt', 'on' ]"
+    # Dictionary of `config` options.
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}

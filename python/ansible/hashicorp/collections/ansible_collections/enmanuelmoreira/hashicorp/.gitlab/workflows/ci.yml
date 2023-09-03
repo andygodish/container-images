@@ -1,0 +1,73 @@
+---
+image: enmanuelmoreira/dind-ansible-molecule:latest
+
+variables:
+  # When using dind, it's wise to use the overlayfs driver for improved performance.
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  GALAXY_NAME: hashicorp
+
+services:
+  - docker:20.10-dind
+
+.rules:
+  job_rules: &job_rules
+    rules:
+      - if: $CI_PIPELINE_SOURCE == "push"
+      - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+Lint Analisys:
+  stage: lint
+  script:
+    - yamllint .
+  <<: *job_rules
+
+test_rocky8:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: "enmanuelmoreira/docker-ansible-rocky8"
+  allow_failure: true
+  before_script:
+    - pip install molecule
+  script:
+    - molecule test
+  <<: *job_rules
+
+test_ubuntu2004:
+  stage: test
+  variables:
+    MOLECULE_DISTRO: "enmanuelmoreira/docker-ansible-ubuntu2004"
+  allow_failure: true
+  before_script:
+    - pip install molecule
+  script:
+    - molecule test
+  <<: *job_rules
+
+build:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_TAG
+  before_script:
+    - git submodule update --init --recursive
+  script:
+    - ansible-galaxy collection build --force
+  <<: *job_rules
+  artifacts:
+    paths:
+      - $CI_PROJECT_NAMESPACE-$GALAXY_NAME-$CI_COMMIT_TAG.tar.gz
+    expire_in: 30 days
+
+publish:
+  stage: publish
+  rules:
+    - if: $CI_COMMIT_TAG
+  dependencies:
+    - build
+  script:
+    - ansible-galaxy collection publish ./$CI_PROJECT_NAMESPACE-$GALAXY_NAME-$CI_COMMIT_TAG.tar.gz --token $GALAXY_TOKEN
+
+schedule:
+  stage: triage
+  extends:
+    - .schedule:triage

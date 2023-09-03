@@ -1,0 +1,33 @@
+---
+vagrant_package_name: vagrant
+vagrant_package_state: present
+
+# List of Vagrant plugins: https://rubygems.org/search?query=vagrant
+vagrant_plugins: []
+# - vagrant-reload
+
+# Installs specific vagrant plugins version.
+vagrant_plugins_with_version: []
+#  - name: vagrant-disksize
+#    version: 0.1.2
+
+vagrant_plugins_state: present
+vagrant_plugins_user: ""
+
+# This configures the default provider Vagrant will use.
+# Documentation: https://www.vagrantup.com/docs/providers
+# Providers available: libvirt, virtualbox, hyper-v
+vagrant_default_provider: "virtualbox"
+
+# Some features that aren't ready for release can be enabled through this
+# feature flag.
+vagrant_experimental: "1"
+
+# If this is set to any value, then Vagrant will force colored output, even
+# if it detected that there is no TTY or the current environment does not
+# support it.
+vagrant_force_color: "1"
+
+# If this is set, Vagrant will not perform any parallel operations (such as
+# parallel box provisioning). All operations will be performed in serial.
+vagrant_no_parallel: "1"

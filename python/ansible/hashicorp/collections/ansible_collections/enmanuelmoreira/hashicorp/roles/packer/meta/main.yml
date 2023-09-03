@@ -1,0 +1,39 @@
+---
+dependencies: []
+galaxy_info:
+  author: enmanuelmoreira
+  role_name: packer
+  description: Packer is a free and open source tool for creating golden images for multiple platforms from a single source configuration.
+  license: license (MIT)
+  min_ansible_version: 2.7
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: GenericUNIX
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
+    - name: GenericBSD
+      versions:
+        - all
+    - name: FreeBSD
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: SLES
+      versions:
+        - all
+    - name: GenericLinux
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
