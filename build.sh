@@ -31,7 +31,8 @@ function build_and_push_docker_image() {
     # Check if dockerfile is named 'dockerfile', if so, add the tag in the FROM statement to the image name
     if [[ $dockerfile_base == "dockerfile" ]]; then
         from=$(awk '/FROM/{print $2}' "$dockerfile_path")
-        from_tag=${from#*:}
+        first_line=$(echo "$from" | head -n 1)
+        from_tag=${first_line#*:}
 
         # Split images_name into array using / as a delimiter
         IFS='/' read -ra path_parts <<< "$dockerfile_dir"
