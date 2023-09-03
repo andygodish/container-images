@@ -25,7 +25,7 @@ docker run -it \
 
 ### Prod
 
-Build sans `--target dev`.
+Build sans --target dev.
 
 From the root of this repo:
 ```
