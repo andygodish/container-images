@@ -20,6 +20,7 @@
   loop:
     - {dest: "/etc/bash_completion.d/vagrant"}
     - {dest: "/etc/profile.d/vagrant.sh"}
+  become: yes
 
 - name: Prepare files.
   ansible.builtin.file:

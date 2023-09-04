@@ -20,6 +20,7 @@
   loop:
     - {dest: "/etc/bash_completion.d/packer"}
     - {dest: "/etc/profile.d/packer.sh"}
+  become: yes
 
 - name: Prepare files.
   ansible.builtin.file:

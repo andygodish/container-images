@@ -18,6 +18,7 @@
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - {dest: "/etc/bash_completion.d/terraform"}
+  become: yes
 
 - name: Prepare files.
   ansible.builtin.file:
