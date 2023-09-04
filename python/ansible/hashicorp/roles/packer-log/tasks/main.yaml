@@ -1,0 +1,9 @@
+---
+- name: Create a file
+  ansible.builtin.copy:
+    dest: "/var/log/packer.log"  # Replace with your desired file path
+    content: ""  # This will create an empty file
+    owner: "{{ ansible_user }}"
+    group: root
+    mode: '0644'
+  become: yes
