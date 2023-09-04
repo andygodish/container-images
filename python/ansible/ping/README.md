@@ -29,7 +29,7 @@ Build sans --target dev.
 
 From the root of this repo:
 ```
-docker build -t ping:prod -f ./python/ansible/docker/dockerfile .docker build -t ping:prod .
+docker build -t ping:prod -f ./python/ansible/ping/dockerfile .docker build -t ping:prod .
 ```
 
 Now you only need to supply the ssh key for your hosts since the build target (dockerfile) copies the content of the ansible project in the container image:
@@ -38,3 +38,7 @@ Now you only need to supply the ssh key for your hosts since the build target (d
 docker run -it -v /tmp/.test-ssh:/home/appuser/.ssh \              
 --rm ping:prod
 ```
+
+**Problem****
+
+The hosts.ini file is now statically built. Don't do this without overriding it.
