@@ -2,6 +2,11 @@
 
 Installs Hashicorp tools on a remote hosts.
 
+### Notes
+- I added a new role called packer-log that creates a /var/log/packer.log file and sets the owner to "{{  ansible_user }}". With just the installation from the collection, the packer cli complains that it is unable to open the packer.log file. This is a workaround for that issue.
+
+- See commit `3cd4422b8b09677b0744d0b898a0f691526ed0c7` - these are the packer role steps I had to add `become: yes` to in order to properly execute the role. I'm not sure if an ansible-galaxy update will wipe these changes.q
+
 ## Usage
 
 ### Dev
