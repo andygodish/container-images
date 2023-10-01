@@ -1,4 +1,4 @@
-FROM docker.io/andygodish/base-python-3.11-slim-bookworm-ansible:2023-09 as dev
+FROM docker.io/andygodish/base-python-3.11-slim-bookworm-ansible:latest as dev
 
 USER root
 
