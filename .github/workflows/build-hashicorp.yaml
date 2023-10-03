@@ -1,0 +1,28 @@
+name: Build 'docker.io/hashicorp' Base Images
+on:
+  workflow_dispatch:
+  # Executes on the 3rd of every month at 1pm UTC
+  schedule:
+    - cron: '0 3 13 * *'
+env: 
+  # The build.sh script takes in a variable corresponding to a directory and builds all dockerfiles in that folder
+  BASE_DIR: hashicorp
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build base images
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Make the build.sh script executable
+      run: chmod +x build.sh
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push docker images
+      run: ./build.sh ${{ env.BASE_DIR }}
