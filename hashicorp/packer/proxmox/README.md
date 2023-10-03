@@ -76,7 +76,7 @@ Run docker image with the following command making sure to pass in the PROXMOX_P
 
 ```
 docker run -it --rm \
-  -p 8300-8400:8300-8400 \
+  --network="host" \
   -e PROXMOX_PASSWORD=<scrubbed> \
   -v ${PWD}/variables.pkrvars.hcl:/home/appuser/variables.pkrvars.hcl \
   andygodish/base-hashicorp-packer-1.9-proxmox:2023-10
@@ -91,3 +91,5 @@ PACKER_LOG=1 PACKER_LOG_TIMESTAMP=1
 > 2023/10/03 14:06:55 packer-plugin-proxmox_v1.1.5_x5.0_linux_amd64 plugin: 2023/10/03 14:06:55 [DEBUG] Error getting SSH address: 500 QEMU guest agent is not running
 
 - [Github Issue](https://github.com/hashicorp/packer-plugin-proxmox/issues/91)
+
+The issue is futher up the chain in that the VM in proxmox was unable to connect to the HTTP server deployed by Packer. This was due to the network traffic being unable to bridge to the IP address of the docker container. Setting the `--netowrk="host"` flag on the docker container resolved the issue.
