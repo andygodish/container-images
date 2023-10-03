@@ -66,3 +66,12 @@ Once the image is built you will want to adjust any remaining settings in the te
 
 ## Packer Via Docker
 
+Pull dockerimage containing with the proxmox HCL configurations.
+
+```
+docker pull andygodish/base-hashicorp-packer-1.9-proxmox
+```
+
+```
+docker run -it --rm -v :/home/appuser andygodish/base-hashicorp-packer-1.9-proxmox
+```
