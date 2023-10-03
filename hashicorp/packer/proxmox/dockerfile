@@ -1,5 +1,5 @@
 FROM andygodish/base-hashicorp-packer:1.9
 
-COPY . .
+COPY ./hashicorp/packer/proxmox .
 
-CMD [ "make", "rocky9" ]
+ENTRYPOINT [ "/bin/bash" ]
