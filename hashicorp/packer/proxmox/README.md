@@ -72,6 +72,22 @@ Pull dockerimage containing with the proxmox HCL configurations.
 docker pull andygodish/base-hashicorp-packer-1.9-proxmox
 ```
 
+Run docker image with the following command making sure to pass in the PROXMOX_PASSWORD and `varialbes.pkrvars.hcl` file.
+
 ```
-docker run -it --rm -v :/home/appuser andygodish/base-hashicorp-packer-1.9-proxmox
+docker run -it --rm \
+  -p 8300-8400:8300-8400 \
+  -e PROXMOX_PASSWORD=<scrubbed> \
+  -v ${PWD}/variables.pkrvars.hcl:/home/appuser/variables.pkrvars.hcl \
+  andygodish/base-hashicorp-packer-1.9-proxmox:2023-10
 ```
+
+## Issues
+
+### DEBUG
+
+PACKER_LOG=1 PACKER_LOG_TIMESTAMP=1 
+
+> 2023/10/03 14:06:55 packer-plugin-proxmox_v1.1.5_x5.0_linux_amd64 plugin: 2023/10/03 14:06:55 [DEBUG] Error getting SSH address: 500 QEMU guest agent is not running
+
+- [Github Issue](https://github.com/hashicorp/packer-plugin-proxmox/issues/91)
