@@ -5,7 +5,7 @@
   collections:
   - drew1kun.shellfreak
   roles:
-  - tmux
-  # - ohmyzsh
-  - vim
-  - mpd
+  - ohmyzsh
+  # - vim
+  # - mpd
+  # - tmux
