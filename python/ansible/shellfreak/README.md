@@ -4,6 +4,10 @@
 
 ## Usage
 
+### OhMyZsh
+
+After running this module, you will be prompted to configure
+
 ### Dev
 
 When building, use the `--target dev` flag. 
