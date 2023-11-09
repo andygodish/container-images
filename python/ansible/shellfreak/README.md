@@ -6,7 +6,9 @@
 
 ### OhMyZsh
 
-After running this module, you will be prompted to configure
+After running this module, you will be prompted to configure the Powerlevel10k theme. You can run the wizard anytime by running `p10k configure`.
+
+- preferences: n, n, n, y, 1 (Lean), 1 (Unicode), 1 (256 colors), n, 1, 1, 1, n, 1, y
 
 ### Dev
 
