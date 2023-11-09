@@ -17,7 +17,7 @@ ohmyzsh_powerlevel9k_cfg: ${HOME}/.zsh/omz_powerlevel9k.cfg
 ohmyzsh_default_theme: 'robbyrussell'     # default fallback theme
 
 ohmyzsh_users:
-  - user: "{{ ansible_user_id }}"         # user name
+  - user: "{{ ansible_user }}"         # user name
     theme: powerlevel10k/powerlevel10k    # ohmyzsh theme; use "random" for random theme
     ssh_ids: []                           # list of SSH ids to add to ohmyzsh ssh manager plugin
     state: present                        # present or absent, to install/uninstall
