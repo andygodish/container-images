@@ -3,10 +3,15 @@
   ansible.builtin.command: "which {{ item }}"
   loop:
     - zsh
-    - terraform
+    # - terraform
   register: ohmyzsh_binaries
   changed_when: false
   failed_when: false
+
+- name: Debug output of binary paths
+  ansible.builtin.debug:
+    msg: "Path to {{ item.item }} is {{ item.stdout }}"
+  loop: "{{ ohmyzsh_binaries.results }}"
 
 - name: "[install] Clone ohmyzsh and plugins for fish-like behaviour"
   ansible.builtin.git:
