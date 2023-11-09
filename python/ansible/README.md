@@ -84,3 +84,21 @@ docker run \
 -v /tmp/.test-ssh:/root/.ssh \
 --rm ansible-base:local ansible-galaxy remove gantsign.oh-my-zsh
 ```
+
+### Working with Remote Collections
+
+I like to tailor remote collections and roles that I pull in to ansible galazy by making changes specific to my environments. For example, commenting out tasks that do not work with newer versions of an os I have installed on my target hosts. 
+
+In the event that I want to capture updates from the upstream galaxy codebase, I can run the following:
+
+```
+ansible-galaxy collection install <collection> --force
+```
+
+This will override any changes that I have made to the collection itself. I can revert those changes to my previous commit by running, 
+
+```
+git reset --hard
+```
+
+It would make sense to create a new branch, force the update, and then resolve merge conflicts upon merging back into the main branch. 
