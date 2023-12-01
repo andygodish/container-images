@@ -9,6 +9,8 @@ RUN apt update -y && \
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
 
+RUN pip install --upgrade pip
+
 RUN useradd -ms /bin/bash -u 1000 appuser
 
 WORKDIR /home/appuser

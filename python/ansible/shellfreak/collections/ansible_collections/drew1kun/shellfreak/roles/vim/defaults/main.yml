@@ -5,7 +5,7 @@
 vim_cleanup: false
 
 # where to install vim config: 'system' | 'user'
-vim_env: user
+vim_env: system
 
 # system-wide vundle plugin installation can only be stored in /root/.vim, so
 # user-specific configuration is possible, but
