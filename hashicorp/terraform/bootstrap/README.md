@@ -2,6 +2,28 @@
 
 A standardized way to quickly bootstrap a new Terraform module that fits the standards I use at work. 
 
+### Quickstart
+
+Create a new directory for your terraform module:
+
+```
+mkdir new-module && cd new-module
+```
+
+Run the docker container making sure to mount your new directory to the `/copy` directory of the container:
+
+```
+docker run -it -v $PWD:/copy andygodish/base-hashicorp-terraform-1.6-bootstrap:latest
+```
+
+Then entrypoint of the container copies the module templates to the `/copy` directory, and the bind mount copies the files to your machine.
+
+**Note** the files written to your PWD are set to an owner:group of 1000:1000. To change this, you'll need to build the image locally and provide the corresponding build args: 
+
+```
+docker build --build-arg UID=$(id -u) --build-arg GID=$(id -g)
+```
+
 ### providers.tf
 
 Verfy basic providers.tf file. Add more as needed by your module. 

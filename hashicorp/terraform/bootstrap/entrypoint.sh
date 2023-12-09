@@ -1,3 +1,3 @@
 cp -r /module/. /copy/
 
-chown appuser:appuser -R /copy
+chown appuser:appgroup -R /copy
