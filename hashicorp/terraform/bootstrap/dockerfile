@@ -1,0 +1,21 @@
+FROM hashicorp/terraform:1.6
+
+ARG UID=1000
+ARG GID=1000
+
+RUN adduser -D -u 1000 appuser
+
+# Update and install dependencies
+RUN apk --no-cache update && \
+    apk --no-cache upgrade && \
+    apk add --no-cache make && \
+    # Add any specific packages you need to install here, e.g., apk add --no-cache git
+    rm -rf /var/cache/apk/*
+
+WORKDIR /module
+
+COPY ./hashicorp/terraform/bootstrap .
+
+ENTRYPOINT [ "sh", "./entrypoint.sh" ]
+
+
