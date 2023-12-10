@@ -42,4 +42,5 @@ terraform.rc
 sensitive.md
 
 **/terraform/azure/networking/
+**/terraform/azure/test/
 ##### END Terraform #####
