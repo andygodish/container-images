@@ -15,7 +15,7 @@ RUN apk --no-cache update && \
 
 WORKDIR /module
 
-COPY ./hashicorp/terraform/bootstrap .
+COPY ./hashicorp/terraform/azure/bootstrap .
 
 ENTRYPOINT [ "sh", "./entrypoint.sh" ]
 
