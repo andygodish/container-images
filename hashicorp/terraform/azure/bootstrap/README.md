@@ -13,7 +13,7 @@ mkdir new-module && cd new-module
 Run the docker container making sure to mount your new directory to the `/copy` directory of the container:
 
 ```
-docker run -it -v $PWD:/copy andygodish/base-hashicorp-terraform-1.6-bootstrap:latest
+docker run -it -v $PWD:/copy andygodish/base-hashicorp-azure-terraform-1.6-bootstrap:latest
 ```
 
 Then entrypoint of the container copies the module templates to the `/copy` directory, and the bind mount copies the files to your machine.
